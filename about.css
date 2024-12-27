@@ -126,6 +126,10 @@ body {
     font-size: 2.5em;
     margin-bottom: 2em;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 0, 0.6); /* Transparent yellow background */
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 8px;
 }
 
 .team-grid {
