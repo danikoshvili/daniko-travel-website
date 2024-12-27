@@ -1,15 +1,15 @@
-// Fetch data from the JSON file
+// Fetch the data from the JSON file
 async function fetchTravelData() {
     try {
       const response = await fetch('travel_recommendation_api.json');
-      const data = await response.json();
-      return data;
+      if (!response.ok) throw new Error('Failed to fetch travel data.');
+      return await response.json();
     } catch (error) {
-      console.error('Error fetching travel data:', error);
+      console.error('Error:', error);
     }
   }
   
-  // Perform search
+  // Perform search based on the keyword
   async function performSearch() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
     const resultsContainer = document.getElementById('results-container');
@@ -23,18 +23,29 @@ async function fetchTravelData() {
     const data = await fetchTravelData();
     const results = [];
   
-    // Search through countries, cities, temples, and beaches
-    data.countries.forEach(country => {
-      country.cities.forEach(city => {
-        if (city.name.toLowerCase().includes(query) || city.description.toLowerCase().includes(query)) {
-          results.push(city);
+    // Match the keyword to categories or specific cities
+    if (query === 'beach') {
+      results.push(...data.beaches);
+    } else if (query === 'temple') {
+      results.push(...data.temples);
+    } else {
+      // Search through countries and their cities
+      data.countries.forEach(country => {
+        if (country.name.toLowerCase().includes(query)) {
+          results.push(...country.cities); // Add all cities from this country
+        } else {
+          country.cities.forEach(city => {
+            if (city.name.toLowerCase().includes(query) || city.description.toLowerCase().includes(query)) {
+              results.push(city); // Add specific matching cities
+            }
+          });
         }
       });
-    });
+    }
   
     // Display results
     if (results.length > 0) {
-      results.forEach(item => {
+      results.slice(0, 2).forEach(item => {
         const resultCard = `
           <div class="result-card">
             <img src="${item.imageUrl}" alt="${item.name}">
@@ -45,8 +56,12 @@ async function fetchTravelData() {
         resultsContainer.innerHTML += resultCard;
       });
     } else {
-      resultsContainer.innerHTML = '<p>No results found.</p>';
+      resultsContainer.innerHTML = '<p>No results found for this keyword.</p>';
     }
+  
+    // Scroll to the results section
+    const resultsSection = document.getElementById('results-section');
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
   }
   
   // Reset search
