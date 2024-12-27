@@ -1,0 +1,105 @@
+/* General Body Styling */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef2f3;
+    color: #333;
+}
+
+/* Navbar Styling */
+.navbar {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    overflow: hidden;
+    padding: 1em 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Logo and Links Container */
+.logo-and-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between logo and links */
+    margin-left: 20px; /* Moves the logo and links 20px to the right */
+}
+
+/* Logo Styling */
+.logo img {
+    width: 65px;
+    height: auto;
+}
+
+/* Navigation Links Container */
+.nav-links {
+    display: flex;
+    gap: 15px; /* Space between navigation buttons */
+}
+
+/* Navbar Links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Search Container */
+.navbar .search-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Moves the search bar 20px to the left */
+}
+
+.navbar input[type="text"] {
+    padding: 0.6em;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    font-size: 0.9em;
+    margin-right: 0.5em;
+    width: 200px;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar input[type="text"]:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+}
+
+.navbar button {
+    padding: 0.6em 1em;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #6a11cb;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-left: 0.5em;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar button:hover {
+    background: #6a11cb;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Content Padding */
+#content {
+    padding: 2em;
+    text-align: center;
+}
