@@ -13,6 +13,8 @@ async function fetchTravelData() {
   async function performSearch() {
     const query = document.getElementById('searchInput').value.trim().toLowerCase();
     const resultsContainer = document.getElementById('results-container');
+    const resultsSection = document.getElementById('results-section');
+    const resultsHeading = document.querySelector('#results-section h2');
     resultsContainer.innerHTML = ''; // Clear previous results
   
     if (!query) {
@@ -55,12 +57,15 @@ async function fetchTravelData() {
         `;
         resultsContainer.innerHTML += resultCard;
       });
+      resultsSection.style.display = 'block'; // Show the results section
+      resultsHeading.classList.add('highlight'); // Highlight the "Search Results" text
     } else {
       resultsContainer.innerHTML = '<p>No results found for this keyword.</p>';
+      resultsSection.style.display = 'block'; // Show the results section even if no results are found
+      resultsHeading.classList.add('highlight'); // Highlight the "Search Results" text
     }
   
     // Scroll to the results section
-    const resultsSection = document.getElementById('results-section');
     resultsSection.scrollIntoView({ behavior: 'smooth' });
   }
   
@@ -68,6 +73,11 @@ async function fetchTravelData() {
   function resetSearch() {
     document.getElementById('searchInput').value = ''; // Clear the search input
     document.getElementById('results-container').innerHTML = ''; // Clear the results container
+    document.getElementById('results-section').style.display = 'none'; // Hide the results section
+  
+    // Remove highlight from "Search Results" text
+    const resultsHeading = document.querySelector('#results-section h2');
+    resultsHeading.classList.remove('highlight');
   }
   
   // Event listeners
