@@ -64,10 +64,10 @@ async function fetchTravelData() {
     resultsSection.scrollIntoView({ behavior: 'smooth' });
   }
   
-  // Reset search
+  // Reset search and results
   function resetSearch() {
-    document.getElementById('searchInput').value = '';
-    document.getElementById('results-container').innerHTML = '';
+    document.getElementById('searchInput').value = ''; // Clear the search input
+    document.getElementById('results-container').innerHTML = ''; // Clear the results container
   }
   
   // Event listeners
